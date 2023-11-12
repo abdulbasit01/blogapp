@@ -34,11 +34,11 @@ const Header = () => {
     },
   ];
   return (
-    <header className="px-4 shadow-sm">
+    <header className="py-3 shadow bg-gray-500">
       <Container>
-        <nav>
+        <nav className="flex justify-between">
           <div className="mr-4">
-            <Link to="/">
+            <Link to="/" className="w-full">
               <Logo width="70px" />
             </Link>
           </div>

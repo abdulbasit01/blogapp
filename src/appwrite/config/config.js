@@ -32,7 +32,7 @@ export class Service {
     }
     async deletePost(slug) {
         try {
-            await this.database.deleteDocument(conf.appwriteDBId, conf.appwriteCollectionId, slug)
+            return await this.database.deleteDocument(conf.appwriteDBId, conf.appwriteCollectionId, slug)
         } catch (error) {
             console.log(error);
             return error
@@ -64,7 +64,7 @@ export class Service {
     }
     async deleteFile(fileId) {
         try {
-            this.client.bucket.deleteFile(conf.appwriteBucketId, fileId)
+            this.bucket.deleteFile(conf.appwriteBucketId, fileId)
         } catch (error) {
             console.log(error);
             return false

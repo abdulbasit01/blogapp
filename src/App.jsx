@@ -11,7 +11,6 @@ const App = () => {
     authService
       .getCurrentUserSession()
       .then((response) => {
-        console.log(response);
         if (response) {
           dispatch(login(response));
         }

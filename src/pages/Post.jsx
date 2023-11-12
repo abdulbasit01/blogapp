@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config/config";
 import { useState } from "react";
 import { Container } from "../components";
@@ -8,13 +8,21 @@ import { Button } from "../components/common";
 const Post = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const navigate = useNavigate();
   let isAuthor = true;
   useEffect(() => {
     appwriteService.getPost(slug).then((response) => {
       setPost(response);
     });
   }, [slug]);
-  const deletePost = () => {};
+  const deletePost = () => {
+    appwriteService.deletePost(slug).then((response) => {
+      if (response) {
+        navigate("/");
+        appwriteService.deleteFile(post.featuredimage);
+      }
+    });
+  };
   if (!post) return null;
   return (
     <div className="py-8">

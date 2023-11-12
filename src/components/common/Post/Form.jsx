@@ -68,7 +68,7 @@ const PostForm = ({ post }) => {
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (name === "title") {
+      if (name === "title" && !post) {
         setValue("slug", slugTransform(value.title), { shouldValidate: true });
       }
     });
@@ -86,6 +86,7 @@ const PostForm = ({ post }) => {
           {...register("title", { required: true })}
         />
         <Input
+          disabled
           label="Slug :"
           placeholder="Slug"
           className="mb-4"
